@@ -1,0 +1,6 @@
+Ivy Bridge is the codename for the "third generation" of the Intel Core processors (Core i7, i5, i3). Ivy Bridge is a die shrink to 22 nanometer manufacturing process based on the 32 nanometer Sandy Bridge ("second generation" of Intel Core)—see tick–tock model. 
+The name is also applied more broadly to the 22 nm die shrink of the Sandy Bridge microarchitecture based on FinFET ("3D") Tri-Gate transistors, which is also used in the Xeon and Core i7 Ivy Bridge-EX (Ivytown), Ivy Bridge-EP and Ivy Bridge-E microprocessors released in 2013.
+
+Ivy Bridge processors are backward compatible with the Sandy Bridge platform, but such systems might require a firmware update (vendor specific).[2] In 2011, Intel released the 7-series Panther Point chipsets with integrated USB 3.0 and SATA 3.0 to complement Ivy Bridge.[3]
+
+Volume production of Ivy Bridge chips began in the third quarter of 2011.[4] Quad-core and dual-core-mobile models launched on April 29, 2012 and May 31, 2012 respectively.[5] Core i3 desktop proc

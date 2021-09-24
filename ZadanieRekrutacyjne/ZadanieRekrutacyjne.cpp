@@ -20,48 +20,56 @@ struct Record
 int main()
 {
     ifstream ifs("sample_data.bin", ios::binary);
-    ofstream ofs("data.bin", ios::binary);
+    ofstream ofs("data.csv");
     char comunicate[1024];
     int k = 0;
 
-    while (ifs.peek() != EOF)
+    if (ifs.good())
     {
-        char* temp = new char[sizeof(Record)];
-        ifs.read(temp, sizeof(Record));
+        while (ifs.peek() != EOF)
+        {
+            char* temp = new char[sizeof(Record)];
+            ifs.read(temp, sizeof(Record));
 
-        Record* first_record = (Record*)temp;
+            Record* first_record = (Record*)temp;
 
-        cout << first_record->numer_16_bit << " ";
-        
-        cout << bitset<8>(first_record->part_of_comunicate) << " ";
-        comunicate[k] = first_record->part_of_comunicate;
-        k++;
+            cout << first_record->numer_16_bit << " ";
+            ofs << first_record->numer_16_bit << ";";
 
-        //cout << first_record->padding << " ";
+            //cout << bitset<8>(first_record->part_of_comunicate) << " ";
+            comunicate[k] = first_record->part_of_comunicate;
+            k++;
 
-        cout << first_record->big_endian_32_bit << " ";
+            //cout << first_record->padding << " ";
 
-        cout << first_record->number_floating << " ";
+            cout << first_record->big_endian_32_bit << " ";
+            ofs << first_record->big_endian_32_bit << ";";
 
-        //cout << first_record->bit_field << " ";
-        char* number_7_bit;
-        for (int i = 7; i >= 1; i--) // or (int i = 0; i < 8; i++)  if you want reverse bit order in bytes
-            cout << ((first_record->bit_field[2] >> i) & 1);
-        cout << endl;
+            cout << first_record->number_floating << " ";
+            ofs << first_record->number_floating << ";";
 
-        //Sprawdzamy, czy plik jest takiej samej wielkości
-        char* tempOfs = new char[sizeof(Record)];
-        tempOfs = (char*)(first_record);
-        ofs.write(tempOfs,sizeof(Record));
-        delete first_record;
+            //cout << first_record->bit_field << " ";
+            unsigned short number_7_bit = 0;
+            for (int i = 7; i >= 1; i--) // or (int i = 0; i < 8; i++)  if you want reverse bit order in bytes
+                number_7_bit += (unsigned short)((first_record->bit_field[2] >> i) & 1);
+            cout << number_7_bit << endl;
+            ofs << number_7_bit << "\n";
+            delete first_record;
+        }
+
+        ofstream comunication("comunicate.txt");
+        for (char i : comunicate)
+        {
+            comunication << i;
+        }
+
+        ifs.close();
+        ofs.close();
+        comunication.close();
     }
-
-    ifs.close();
-    ofs.close();    
-
-    for (char i : comunicate) 
+    else
     {
-        cout << bitset<8>(i);
+        cout << "Error due to bad file open";
     }
 }
 
