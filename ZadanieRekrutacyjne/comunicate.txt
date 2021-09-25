@@ -3,4 +3,4 @@ The name is also applied more broadly to the 22 nm die shrink of the Sandy Bridg
 
 Ivy Bridge processors are backward compatible with the Sandy Bridge platform, but such systems might require a firmware update (vendor specific).[2] In 2011, Intel released the 7-series Panther Point chipsets with integrated USB 3.0 and SATA 3.0 to complement Ivy Bridge.[3]
 
-Volume production of Ivy Bridge chips began in the third quarter of 2011.[4] Quad-core and dual-core-mobile models launched on April 29, 2012 and May 31, 2012 respectively.[5] Core i3 desktop proc
+Volume production of Ivy Bridge chips began in the third quarter of 2011.[4] Quad-core and dual-core-mobile models launched on April 29, 2012 and May 31, 2012 respectively.[5] Core i3 desktop procÌ
