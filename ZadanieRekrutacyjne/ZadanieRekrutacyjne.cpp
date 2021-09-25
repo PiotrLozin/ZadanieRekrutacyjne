@@ -21,8 +21,7 @@ int main()
 {
     ifstream ifs("sample_data.bin", ios::binary);
     ofstream ofs("data.csv");
-    char comunicate[1025];
-    int k = 0;
+    list<char> comunicate;
 
     if (ifs.good())
     {
@@ -31,17 +30,21 @@ int main()
             char* temp = new char[sizeof(Record)];
             ifs.read(temp, sizeof(Record));
             Record* first_record = (Record*)temp;
-            comunicate[k] = first_record->part_of_comunicate;
-            k++;
+            comunicate.push_back( first_record->part_of_comunicate);
+            char next_column_in_csv = ';'; // due to excel differences depending on settings, I put line end mark and next line mark into variables
+            char next_line_in_csv = '\n';
 
-            ofs << first_record->numer_16_bit << ";";
-            ofs << first_record->big_endian_32_bit << ";";
-            ofs << first_record->number_floating << ";";
+            ofs << first_record->numer_16_bit << next_column_in_csv;
+            ofs << first_record->big_endian_32_bit << next_column_in_csv;
+            ofs << first_record->number_floating << next_column_in_csv;
 
-            unsigned short number_7_bit = 0;
-            for (int i = 7; i >= 1; i--) // or (int i = 0; i < 8; i++)  if you want reverse bit order in bytes
-                number_7_bit += (unsigned short)((first_record->bit_field[2] >> i) & 1);
-            ofs << number_7_bit << "\n";
+            char number = 0;
+            number = number | ((first_record->bit_field[1] << 2) & (~3));
+            number = (number >> 1) & (~128);
+            number = number | ((first_record->bit_field[2] >> 7) & 1);
+            unsigned short number_7_bit = (unsigned short)number;
+            ofs << number_7_bit << next_line_in_csv;
+
             delete first_record;
         }
 
